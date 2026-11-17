@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanawat Doungrai | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            dark: '#0a0a0f',
+                            darker: '#050508',
+                            card: '#0d1117',
+                            border: '#1a1f2e',
+                            cyan: '#00e5ff',
+                            teal: '#00bcd4',
+                            glow: '#00e5ff',
+                            accent: '#00fff7',
+                            muted: '#8892b0',
+                            light: '#ccd6f6',
+                        }
+                    },
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        thai: ['Noto Sans Thai', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'glow-pulse': 'glow-pulse 2s ease-in-out infinite alternate',
+                        'scan-line': 'scan-line 6s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'typing': 'typing 3.5s steps(40, end), blink-caret .75s step-end infinite',
+                        'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
+                        'slide-in-left': 'slide-in-left 0.5s ease-out forwards',
+                        'neon-flicker': 'neon-flicker 1.5s ease-in-out infinite alternate',
+                        'matrix-rain': 'matrix-rain 20s linear infinite',
+                        'border-flow': 'border-flow 3s linear infinite',
+                    },
+                    keyframes: {
+                        'glow-pulse': {
+                            '0%': { boxShadow: '0 0 5px #00e5ff, 0 0 10px #00e5ff, 0 0 20px #00e5ff' },
+                            '100%': { boxShadow: '0 0 10px #00e5ff, 0 0 20px #00e5ff, 0 0 40px #00e5ff, 0 0 80px #00e5ff' },
+                        },
+                        'scan-line': {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(100%)' },
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'fade-in-up': {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        'slide-in-left': {
+                            '0%': { opacity: '0', transform: 'translateX(-30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        'neon-flicker': {
+                            '0%, 19%, 21%, 23%, 25%, 54%, 56%, 100%': {
+                                textShadow: '0 0 7px #00e5ff, 0 0 10px #00e5ff, 0 0 21px #00e5ff, 0 0 42px #00bcd4, 0 0 82px #00bcd4',
+                            },
+                            '20%, 24%, 55%': {
+                                textShadow: 'none',
+                            },
+                        },
+                        'matrix-rain': {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(100vh)' },
+                        },
+                        'border-flow': {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        ::-webkit-scrollbar-thumb { background: #00e5ff33; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00e5ff66; }
+
+        body {
+            font-family: 'Noto Sans Thai', 'Inter', sans-serif;
+            background-color: #050508;
+            color: #ccd6f6;
+            overflow-x: hidden;
+        }
+
+        /* Cyber Grid Background */
+        .cyber-grid {
+            background-image: 
+                linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Scanline overlay */
+        .scanline::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 229, 255, 0.015) 2px,
+                rgba(0, 229, 255, 0.015) 4px
+            );
+            z-index: 9999;
+        }
+
+        /* Glowing text */
+        .text-glow {
+            text-shadow: 0 0 7px #00e5ff, 0 0 10px #00e5ff, 0 0 21px #00e5ff;
+        }
+
+        .text-glow-sm {
+            text-shadow: 0 0 5px #00e5ff, 0 0 10px #00e5ff44;
+        }
+
+        /* Neon border card */
+        .neon-card {
+            background: linear-gradient(135deg, rgba(13, 17, 23, 0.9), rgba(10, 10, 15, 0.95));
+            border: 1px solid rgba(0, 229, 255, 0.15);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+        .neon-card:hover {
+            border-color: rgba(0, 229, 255, 0.5);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.1), inset 0 0 15px rgba(0, 229, 255, 0.05);
+            transform: translateY(-5px);
+        }
+
+        /* Glowing button */
+        .btn-cyber {
+            position: relative;
+            background: transparent;
+            border: 1px solid #00e5ff;
+            color: #00e5ff;
+            padding: 12px 32px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .btn-cyber::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        .btn-cyber:hover::before {
+            left: 100%;
+        }
+        .btn-cyber:hover {
+            background: rgba(0, 229, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3), 0 0 30px rgba(0, 229, 255, 0.1);
+        }
+
+        /* Sidebar Navigation */
+        .sidebar-nav {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 72px;
+            height: 100vh;
+            background: rgba(5, 5, 8, 0.95);
+            border-right: 1px solid rgba(0, 229, 255, 0.1);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: width 0.3s ease;
+        }
+        .sidebar-nav:hover {
+            width: 200px;
+        }
+        .sidebar-nav .nav-label {
+            display: none;
+            white-space: nowrap;
+        }
+        .sidebar-nav:hover .nav-label {
+            display: inline;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            width: 100%;
+            color: #8892b0;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #00e5ff;
+        }
+        .nav-link.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 60%;
+            background: #00e5ff;
+            box-shadow: 0 0 10px #00e5ff;
+            border-radius: 0 2px 2px 0;
+        }
+        .nav-link i {
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* Section header */
+        .section-header {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3rem;
+        }
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: #00e5ff;
+            box-shadow: 0 0 10px #00e5ff;
+        }
+
+        /* Skill bar */
+        .skill-bar-bg {
+            background: rgba(0, 229, 255, 0.05);
+            border: 1px solid rgba(0, 229, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            height: 8px;
+        }
+        .skill-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00bcd4, #00e5ff);
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+            border-radius: 2px;
+            transition: width 1.5s ease;
+            width: 0%;
+        }
+
+        /* Timeline */
+        .timeline-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #00e5ff, transparent);
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 14px;
+            width: 14px;
+            height: 14px;
+            background: #050508;
+            border: 2px solid #00e5ff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+            z-index: 1;
+        }
+
+        /* Particle canvas */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Lang toggle */
+        .lang-toggle {
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            padding: 6px 14px;
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        .lang-toggle:hover {
+            border-color: #00e5ff;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+        }
+        .lang-toggle .active-lang {
+            color: #00e5ff;
+            text-shadow: 0 0 5px #00e5ff;
+        }
+
+        /* Typewriter cursor */
+        .typewriter-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background: #00e5ff;
+            margin-left: 4px;
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Hexagon profile picture */
+        .hex-profile {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: linear-gradient(135deg, #00e5ff, #00bcd4);
+            padding: 3px;
+        }
+        .hex-profile-inner {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: #0a0a0f;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Project card hover effect */
+        .project-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00e5ff, transparent, #00bcd4, transparent);
+            background-size: 400% 400%;
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            animation: border-flow 3s linear infinite;
+        }
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Responsive sidebar */
+        @media (max-width: 768px) {
+            .sidebar-nav {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                top: auto;
+                width: 100% !important;
+                height: 64px;
+                flex-direction: row;
+                border-right: none;
+                border-top: 1px solid rgba(0, 229, 255, 0.1);
+                justify-content: space-around;
+                padding: 0;
+            }
+            .sidebar-nav .nav-label {
+                display: none !important;
+            }
+            .sidebar-nav .logo-section,
+            .sidebar-nav .social-section {
+                display: none;
+            }
+            .nav-link {
+                padding: 10px;
+                justify-content: center;
+            }
+            .nav-link.active::before {
+                left: 50%;
+                top: 0;
+                transform: translateX(-50%);
+                width: 60%;
+                height: 3px;
+                border-radius: 0 0 2px 2px;
+            }
+            .main-content {
+                margin-left: 0 !important;
+                padding-bottom: 80px;
+            }
+        }
+
+        /* Reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Corner decorations */
+        .corner-decoration::before,
+        .corner-decoration::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-color: rgba(0, 229, 255, 0.3);
+            border-style: solid;
+        }
+        .corner-decoration::before {
+            top: -1px;
+            left: -1px;
+            border-width: 2px 0 0 2px;
+        }
+        .corner-decoration::after {
+            bottom: -1px;
+            right: -1px;
+            border-width: 0 2px 2px 0;
+        }
+    </style>
+</head>
+<body class="cyber-grid scanline">
+
+    <!-- Particle Background -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Language Toggle (Top Right) -->
+    <div class="fixed top-4 right-4 z-[1001]">
+        <button onclick="toggleLang()" class="lang-toggle bg-cyber-darker/80 backdrop-blur-md rounded">
+            <span id="lang-th" class="active-lang">TH</span>
+            <span class="text-cyber-muted mx-1">/</span>
+            <span id="lang-en" class="text-cyber-muted">EN</span>
+        </button>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar-nav">
+        <div class="logo-section mb-8 mt-6">
+            <div class="w-10 h-10 border border-cyber-cyan/50 rounded-lg flex items-center justify-center">
+                <span class="font-orbitron text-cyber-cyan text-sm font-bold">TD</span>
+            </div>
+        </div>
+
+        <div class="flex flex-col w-full gap-1">
+            <a href="#home" class="nav-link active" data-section="home">
+                <i class="fas fa-terminal"></i>
+                <span class="nav-label font-orbitron text-xs" data-th="หน้าแรก" data-en="Home">หน้าแรก</span>
+            </a>
+            <a href="#about" class="nav-link" data-section="about">
+                <i class="fas fa-user-astronaut"></i>
+                <span class="nav-label font-orbitron text-xs" data-th="เกี่ยวกับ" data-en="About">เกี่ยวกับ</span>
+            </a>
+            <a href="#education" class="nav-link" data-section="education">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="nav-label font-orbitron text-xs" data-th="การศึกษา" data-en="Education">การศึกษา</span>
+            </a>
+            <a href="#skills" class="nav-link" data-section="skills">
+                <i class="fas fa-code"></i>
+                <span class="nav-label font-orbitron text-xs" data-th="ทักษะ" data-en="Skills">ทักษะ</span>
+            </a>
+            <a href="#projects" class="nav-link" data-section="projects">
+                <i class="fas fa-diagram-project"></i>
+                <span class="nav-label font-orbitron text-xs" data-th="ผลงาน" data-en="Projects">ผลงาน</span>
+            </a>
+            <a href="#contact" class="nav-link" data-section="contact">
+                <i class="fas fa-satellite-dish"></i>
+                <span class="nav-label font-orbitron text-xs" data-th="ติดต่อ" data-en="Contact">ติดต่อ</span>
+            </a>
+        </div>
+
+        <div class="social-section mt-auto mb-6 flex flex-col gap-3 items-center">
+            <a href="mailto:tanawat.dou@spumail.net" class="text-cyber-muted hover:text-cyber-cyan transition-colors" title="Email">
+                <i class="fas fa-envelope text-sm"></i>
+            </a>
+            <a href="tel:094-791-4598" class="text-cyber-muted hover:text-cyber-cyan transition-colors" title="Phone">
+                <i class="fas fa-phone text-sm"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content ml-[72px] relative z-10">
+
+        <!-- ==================== SECTION 1: HERO / HOME ==================== -->
+        <section id="home" class="min-h-screen flex items-center justify-center px-6 md:px-16 lg:px-24 relative">
+            <div class="max-w-4xl w-full">
+                <div class="mb-6">
+                    <p class="font-orbitron text-cyber-cyan text-xs tracking-[6px] mb-4 animate-fade-in-up" style="animation-delay: 0.2s"
+                       data-th="&gt; สวัสดีครับ ยินดีต้อนรับ_" data-en="&gt; Hello, welcome_">
+                        &gt; สวัสดีครับ ยินดีต้อนรับ_
+                    </p>
+                </div>
+
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-2 animate-fade-in-up" style="animation-delay: 0.4s">
+                    <span class="text-cyber-light" data-th="ธนวรรธน์" data-en="Tanawat">ธนวรรธน์</span>
+                </h1>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in-up" style="animation-delay: 0.6s">
+                    <span class="text-glow text-cyber-cyan font-orbitron" data-th="ด้วงไร" data-en="Doungrai">ด้วงไร</span>
+                </h1>
+
+                <div class="flex items-center gap-2 mb-8 animate-fade-in-up" style="animation-delay: 0.8s">
+                    <span class="inline-block w-8 h-[1px] bg-cyber-cyan"></span>
+                    <p class="text-cyber-muted text-sm md:text-base font-orbitron tracking-wider"
+                       data-th="นักศึกษาสาขาเทคโนโลยีสารสนเทศและการสื่อสาร"
+                       data-en="Information & Communication Technology Student">
+                        นักศึกษาสาขาเทคโนโลยีสารสนเทศและการสื่อสาร
+                    </p>
+                </div>
+
+                <p class="text-cyber-muted max-w-xl text-sm md:text-base leading-relaxed mb-10 animate-fade-in-up" style="animation-delay: 1s"
+                   data-th="นักศึกษา ICT มหาวิทยาลัยศรีปทุม ผู้หลงใหลในเทคโนโลยีและการพัฒนาซอฟต์แวร์ พร้อมเรียนรู้สิ่งใหม่ๆ และสร้างสรรค์ผลงานที่มีคุณค่า"
+                   data-en="ICT student at Sripatum University, passionate about technology and software development. Always eager to learn new things and create meaningful projects.">
+                    นักศึกษา ICT มหาวิทยาลัยศรีปทุม ผู้หลงใหลในเทคโนโลยีและการพัฒนาซอฟต์แวร์ พร้อมเรียนรู้สิ่งใหม่ๆ และสร้างสรรค์ผลงานที่มีคุณค่า
+                </p>
+
+                <div class="flex flex-wrap gap-4 animate-fade-in-up" style="animation-delay: 1.2s">
+                    <a href="#projects" class="btn-cyber rounded">
+                        <span data-th="ดูผลงาน" data-en="View Projects">ดูผลงาน</span>
+                    </a>
+                    <a href="#contact" class="btn-cyber rounded bg-cyber-cyan/10">
+                        <span data-th="ติดต่อ" data-en="Contact Me">ติดต่อ</span>
+                    </a>
+                </div>
+
+                <!-- Scroll indicator -->
+                <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-float">
+                    <span class="text-cyber-muted text-xs font-orbitron tracking-widest" data-th="เลื่อนลง" data-en="Scroll">เลื่อนลง</span>
+                    <div class="w-5 h-8 border border-cyber-cyan/30 rounded-full flex justify-center pt-1">
+                        <div class="w-1 h-2 bg-cyber-cyan rounded-full animate-bounce"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decorative code lines -->
+            <div class="absolute right-8 top-1/4 hidden lg:block text-cyber-cyan/10 font-mono text-xs leading-6 select-none">
+                <p>&lt;portfolio&gt;</p>
+                <p>&nbsp;&nbsp;&lt;developer&gt;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;tanawat.doungrai</p>
+                <p>&nbsp;&nbsp;&lt;/developer&gt;</p>
+                <p>&nbsp;&nbsp;&lt;field&gt;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;ICT</p>
+                <p>&nbsp;&nbsp;&lt;/field&gt;</p>
+                <p>&lt;/portfolio&gt;</p>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 2: ABOUT ==================== -->
+        <section id="about" class="min-h-screen py-24 px-6 md:px-16 lg:px-24">
+            <div class="max-w-5xl mx-auto">
+                <div class="reveal">
+                    <div class="flex items-center gap-4 mb-2">
+                        <span class="font-orbitron text-cyber-cyan text-sm">01.</span>
+                        <h2 class="section-header font-orbitron text-2xl md:text-3xl text-cyber-light"
+                            data-th="เกี่ยวกับผม" data-en="About Me">เกี่ยวกับผม</h2>
+                        <span class="flex-1 h-[1px] bg-cyber-border ml-4"></span>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-5 gap-12 mt-12">
+                    <!-- About Text -->
+                    <div class="md:col-span-3 reveal">
+                        <div class="neon-card rounded-lg p-8 corner-decoration relative">
+                            <p class="text-cyber-muted leading-relaxed mb-6"
+                               data-th="สวัสดีครับ ผม ธนวรรธน์ ด้วงไร นักศึกษาสาขาเทคโนโลยีสารสนเทศและการสื่อสาร (ICT) ที่มหาวิทยาลัยศรีปทุม ผมมีความหลงใหลในเทคโนโลยีและการเขียนโปรแกรม โดยเฉพาะด้าน Web Development และ Software Engineering"
+                               data-en="Hi! I'm Tanawat Doungrai, an Information & Communication Technology (ICT) student at Sripatum University. I'm passionate about technology and programming, especially Web Development and Software Engineering.">
+                                สวัสดีครับ ผม <span class="text-cyber-cyan">ธนวรรธน์ ด้วงไร</span> นักศึกษาสาขาเทคโนโลยีสารสนเทศและการสื่อสาร (ICT) ที่มหาวิทยาลัยศรีปทุม ผมมีความหลงใหลในเทคโนโลยีและการเขียนโปรแกรม โดยเฉพาะด้าน Web Development และ Software Engineering
+                            </p>
+                            <p class="text-cyber-muted leading-relaxed mb-6"
+                               data-th="ผมเชื่อว่าเทคโนโลยีสามารถเปลี่ยนแปลงโลกได้ และผมพร้อมที่จะเป็นส่วนหนึ่งของการเปลี่ยนแปลงนั้น ผมมุ่งมั่นพัฒนาตัวเองอยู่เสมอ เพื่อให้พร้อมสำหรับอนาคตในสายงาน IT"
+                               data-en="I believe technology can change the world, and I'm ready to be part of that change. I'm committed to continuously improving myself to be future-ready in the IT industry.">
+                                ผมเชื่อว่าเทคโนโลยีสามารถเปลี่ยนแปลงโลกได้ และผมพร้อมที่จะเป็นส่วนหนึ่งของการเปลี่ยนแปลงนั้น ผมมุ่งมั่นพัฒนาตัวเองอยู่เสมอ เพื่อให้พร้อมสำหรับอนาคตในสายงาน IT
+                            </p>
+
+                            <!-- Quick Info Grid -->
+                            <div class="grid grid-cols-2 gap-4 mt-8">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-user text-cyber-cyan text-sm"></i>
+                                    <div>
+                                        <p class="text-xs text-cyber-muted" data-th="ชื่อ" data-en="Name">ชื่อ</p>
+                                        <p class="text-sm text-cyber-light" data-th="ธนวรรธน์ ด้วงไร" data-en="Tanawat Doungrai">ธนวรรธน์ ด้วงไร</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-map-marker-alt text-cyber-cyan text-sm"></i>
+                                    <div>
+                                        <p class="text-xs text-cyber-muted" data-th="ที่อยู่" data-en="Location">ที่อยู่</p>
+                                        <p class="text-sm text-cyber-light" data-th="กรุงเทพมหานคร" data-en="Bangkok, Thailand">กรุงเทพมหานคร</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-envelope text-cyber-cyan text-sm"></i>
+                                    <div>
+                                        <p class="text-xs text-cyber-muted">Email</p>
+                                        <a href="mailto:tanawat.dou@spumail.net" class="text-sm text-cyber-light hover:text-cyber-cyan transition-colors">tanawat.dou@spumail.net</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-phone text-cyber-cyan text-sm"></i>
+                                    <div>
+                                        <p class="text-xs text-cyber-muted" data-th="โทรศัพท์" data-en="Phone">โทรศัพท์</p>
+                                        <a href="tel:094-791-4598" class="text-sm text-cyber-light hover:text-cyber-cyan transition-colors">094-791-4598</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Visual -->
+                    <div class="md:col-span-2 flex items-center justify-center reveal">
+                        <div class="relative">
+                            <div class="hex-profile w-56 h-64 animate-float">
+                                <div class="hex-profile-inner">
+                                    <img src="profile.jpg" alt="Tanawat Doungrai" class="w-full h-full object-cover" style="clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
+                                </div>
+                            </div>
+                            <!-- Orbiting dots -->
+                            <div class="absolute -top-4 -right-4 w-3 h-3 bg-cyber-cyan rounded-full animate-ping opacity-75"></div>
+                            <div class="absolute -bottom-2 -left-6 w-2 h-2 bg-cyber-teal rounded-full animate-ping opacity-50" style="animation-delay: 1s"></div>
+                            <div class="absolute top-1/2 -right-8 w-2 h-2 bg-cyber-accent rounded-full animate-ping opacity-50" style="animation-delay: 0.5s"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 reveal">
+                    <div class="neon-card rounded-lg p-6 text-center">
+                        <div class="font-orbitron text-3xl text-cyber-cyan mb-2" data-count="2">0</div>
+                        <p class="text-cyber-muted text-xs font-orbitron tracking-wider" data-th="ปีการศึกษา" data-en="Academic Years">ปีการศึกษา</p>
+                    </div>
+                    <div class="neon-card rounded-lg p-6 text-center">
+                        <div class="font-orbitron text-3xl text-cyber-cyan mb-2" data-count="10">0</div>
+                        <p class="text-cyber-muted text-xs font-orbitron tracking-wider" data-th="โปรเจกต์" data-en="Projects">โปรเจกต์</p>
+                    </div>
+                    <div class="neon-card rounded-lg p-6 text-center">
+                        <div class="font-orbitron text-3xl text-cyber-cyan mb-2" data-count="8">0</div>
+                        <p class="text-cyber-muted text-xs font-orbitron tracking-wider" data-th="ทักษะ" data-en="Skills">ทักษะ</p>
+                    </div>
+                    <div class="neon-card rounded-lg p-6 text-center">
+                        <div class="font-orbitron text-3xl text-cyber-cyan mb-2" data-count="100">0</div>
+                        <p class="text-cyber-muted text-xs font-orbitron tracking-wider" data-th="% ความมุ่งมั่น" data-en="% Dedication">% ความมุ่งมั่น</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 3: EDUCATION ==================== -->
+        <section id="education" class="min-h-screen py-24 px-6 md:px-16 lg:px-24">
+            <div class="max-w-5xl mx-auto">
+                <div class="reveal">
+                    <div class="flex items-center gap-4 mb-2">
+                        <span class="font-orbitron text-cyber-cyan text-sm">02.</span>
+                        <h2 class="section-header font-orbitron text-2xl md:text-3xl text-cyber-light"
+                            data-th="ประวัติการศึกษา" data-en="Education">ประวัติการศึกษา</h2>
+                        <span class="flex-1 h-[1px] bg-cyber-border ml-4"></span>
+                    </div>
+                </div>
+
+                <div class="relative mt-16 ml-6 md:ml-12">
+                    <div class="timeline-line"></div>
+
+                    <!-- Education 1: Sripatum University -->
+                    <div class="relative pl-16 pb-16 reveal">
+                        <div class="timeline-dot top-1"></div>
+                        <div class="neon-card rounded-lg p-8 corner-decoration relative">
+                            <div class="flex flex-wrap items-center justify-between mb-4">
+                                <div>
+                                    <span class="inline-block px-3 py-1 bg-cyber-cyan/10 border border-cyber-cyan/30 rounded text-cyber-cyan text-xs font-orbitron tracking-wider mb-2"
+                                          data-th="ปัจจุบัน" data-en="Present">ปัจจุบัน</span>
+                                    <h3 class="text-xl text-cyber-light font-semibold"
+                                        data-th="มหาวิทยาลัยศรีปทุม" data-en="Sripatum University">มหาวิทยาลัยศรีปทุม</h3>
+                                </div>
+                                <div class="flex items-center gap-2 text-cyber-muted text-sm mt-2 md:mt-0">
+                                    <i class="fas fa-calendar-alt text-cyber-cyan"></i>
+                                    <span data-th="พ.ศ. 2566 - ปัจจุบัน" data-en="2023 - Present">พ.ศ. 2566 - ปัจจุบัน</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 mb-4">
+                                <i class="fas fa-laptop-code text-cyber-cyan text-sm"></i>
+                                <p class="text-cyber-muted"
+                                   data-th="คณะเทคโนโลยีสารสนเทศ สาขาเทคโนโลยีสารสนเทศและการสื่อสาร (ICT)"
+                                   data-en="Faculty of Information Technology, B.Sc. in Information & Communication Technology (ICT)">
+                                    คณะเทคโนโลยีสารสนเทศ สาขาเทคโนโลยีสารสนเทศและการสื่อสาร (ICT)
+                                </p>
+                            </div>
+                            <p class="text-cyber-muted text-sm leading-relaxed"
+                               data-th="ศึกษาเกี่ยวกับการพัฒนาซอฟต์แวร์ ระบบเครือข่าย ฐานข้อมูล การพัฒนาเว็บ และเทคโนโลยีสมัยใหม่ต่างๆ"
+                               data-en="Studying software development, networking, database management, web development, and modern technologies.">
+                                ศึกษาเกี่ยวกับการพัฒนาซอฟต์แวร์ ระบบเครือข่าย ฐานข้อมูล การพัฒนาเว็บ และเทคโนโลยีสมัยใหม่ต่างๆ
+                            </p>
+                            <!-- Courses tags -->
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <span class="px-2 py-1 text-xs bg-cyber-cyan/5 border border-cyber-cyan/20 rounded text-cyber-cyan/80">Web Development</span>
+                                <span class="px-2 py-1 text-xs bg-cyber-cyan/5 border border-cyber-cyan/20 rounded text-cyber-cyan/80">Database</span>
+                                <span class="px-2 py-1 text-xs bg-cyber-cyan/5 border border-cyber-cyan/20 rounded text-cyber-cyan/80">Networking</span>
+                                <span class="px-2 py-1 text-xs bg-cyber-cyan/5 border border-cyber-cyan/20 rounded text-cyber-cyan/80">Software Engineering</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education 2: Saint Dominic School -->
+                    <div class="relative pl-16 pb-16 reveal">
+                        <div class="timeline-dot top-1"></div>
+                        <div class="neon-card rounded-lg p-8 corner-decoration relative">
+                            <div class="flex flex-wrap items-center justify-between mb-4">
+                                <div>
+                                    <span class="inline-block px-3 py-1 bg-cyber-cyan/5 border border-cyber-cyan/20 rounded text-cyber-muted text-xs font-orbitron tracking-wider mb-2"
+                                          data-th="จบการศึกษา" data-en="Graduated">จบการศึกษา</span>
+                                    <h3 class="text-xl text-cyber-light font-semibold"
+                                        data-th="โรงเรียนเซนต์ดอมินิก" data-en="Saint Dominic School">โรงเรียนเซนต์ดอมินิก</h3>
+                                </div>
+                                <div class="flex items-center gap-2 text-cyber-muted text-sm mt-2 md:mt-0">
+                                    <i class="fas fa-calendar-alt text-cyber-cyan"></i>
+                                    <span data-th="สำเร็จการศึกษา พ.ศ. 2565" data-en="Graduated 2022">สำเร็จการศึกษา พ.ศ. 2565</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 mb-4">
+                                <i class="fas fa-school text-cyber-cyan text-sm"></i>
+                                <p class="text-cyber-muted"
+                                   data-th="ระดับมัธยมศึกษา"
+                                   data-en="Secondary Education">
+                                    ระดับมัธยมศึกษา
+                                </p>
+                            </div>
+                            <p class="text-cyber-muted text-sm leading-relaxed"
+                               data-th="ศึกษาระดับมัธยมศึกษาที่โรงเรียนเซนต์ดอมินิก สร้างพื้นฐานความรู้และทักษะชีวิตที่สำคัญ"
+                               data-en="Completed secondary education at Saint Dominic School, building a strong foundation of knowledge and essential life skills.">
+                                ศึกษาระดับมัธยมศึกษาที่โรงเรียนเซนต์ดอมินิก สร้างพื้นฐานความรู้และทักษะชีวิตที่สำคัญ
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 4: SKILLS ==================== -->
+        <section id="skills" class="min-h-screen py-24 px-6 md:px-16 lg:px-24">
+            <div class="max-w-5xl mx-auto">
+                <div class="reveal">
+                    <div class="flex items-center gap-4 mb-2">
+                        <span class="font-orbitron text-cyber-cyan text-sm">03.</span>
+                        <h2 class="section-header font-orbitron text-2xl md:text-3xl text-cyber-light"
+                            data-th="ทักษะ" data-en="Skills">ทักษะ</h2>
+                        <span class="flex-1 h-[1px] bg-cyber-border ml-4"></span>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 mt-12">
+                    <!-- Technical Skills -->
+                    <div class="reveal">
+                        <h3 class="font-orbitron text-sm text-cyber-cyan tracking-wider mb-8 flex items-center gap-3">
+                            <i class="fas fa-microchip"></i>
+                            <span data-th="ทักษะด้านเทคนิค" data-en="Technical Skills">ทักษะด้านเทคนิค</span>
+                        </h3>
+
+                        <div class="space-y-6">
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-cyber-light text-sm flex items-center gap-2">
+                                        <i class="fab fa-html5 text-orange-500"></i> HTML5 / CSS3
+                                    </span>
+                                    <span class="text-cyber-cyan text-xs font-orbitron">85%</span>
+                                </div>
+                                <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85"></div></div>
+                            </div>
+
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-cyber-light text-sm flex items-center gap-2">
+                                        <i class="fab fa-js-square text-yellow-400"></i> JavaScript
+                                    </span>
+                                    <span class="text-cyber-cyan text-xs font-orbitron">70%</span>
+                                </div>
+                                <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="70"></div></div>
+                            </div>
+
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-cyber-light text-sm flex items-center gap-2">
+                                        <i class="fab fa-python text-blue-400"></i> Python
+                                    </span>
+                                    <span class="text-cyber-cyan text-xs font-orbitron">65%</span>
+                                </div>
+                                <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="65"></div></div>
+                            </div>
+
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-cyber-light text-sm flex items-center gap-2">
+                                        <i class="fas fa-database text-green-400"></i> SQL / Database
+                                    </span>
+                                    <span class="text-cyber-cyan text-xs font-orbitron">60%</span>
+                                </div>
+                                <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="60"></div></div>
+                            </div>
+
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-cyber-light text-sm flex items-center gap-2">
+                                        <i class="fab fa-react text-cyan-400"></i> React / Tailwind
+                                    </span>
+                                    <span class="text-cyber-cyan text-xs font-orbitron">55%</span>
+                                </div>
+                                <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="55"></div></div>
+                            </div>
+
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-cyber-light text-sm flex items-center gap-2">
+                                        <i class="fab fa-php text-indigo-400"></i> PHP
+                                    </span>
+                                    <span class="text-cyber-cyan text-xs font-orbitron">50%</span>
+                                </div>
+                                <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="50"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Soft Skills & Tools -->
+                    <div class="reveal">
+                        <h3 class="font-orbitron text-sm text-cyber-cyan tracking-wider mb-8 flex items-center gap-3">
+                            <i class="fas fa-tools"></i>
+                            <span data-th="เครื่องมือ &amp; ทักษะอื่นๆ" data-en="Tools &amp; Other Skills">เครื่องมือ &amp; ทักษะอื่นๆ</span>
+                        </h3>
+
+                        <!-- Tool Grid -->
+                        <div class="grid grid-cols-3 gap-4 mb-10">
+                            <div class="neon-card rounded-lg p-4 text-center">
+                                <i class="fab fa-git-alt text-2xl text-orange-500 mb-2"></i>
+                                <p class="text-xs text-cyber-muted">Git</p>
+                            </div>
+                            <div class="neon-card rounded-lg p-4 text-center">
+                                <i class="fab fa-github text-2xl text-cyber-light mb-2"></i>
+                                <p class="text-xs text-cyber-muted">GitHub</p>
+                            </div>
+                            <div class="neon-card rounded-lg p-4 text-center">
+                                <i class="fab fa-figma text-2xl text-pink-400 mb-2"></i>
+                                <p class="text-xs text-cyber-muted">Figma</p>
+                            </div>
+                            <div class="neon-card rounded-lg p-4 text-center">
+                                <i class="fas fa-terminal text-2xl text-green-400 mb-2"></i>
+                                <p class="text-xs text-cyber-muted">VS Code</p>
+                            </div>
+                            <div class="neon-card rounded-lg p-4 text-center">
+                                <i class="fab fa-linux text-2xl text-yellow-400 mb-2"></i>
+                                <p class="text-xs text-cyber-muted">Linux</p>
+                            </div>
+                            <div class="neon-card rounded-lg p-4 text-center">
+                                <i class="fab fa-docker text-2xl text-blue-400 mb-2"></i>
+                                <p class="text-xs text-cyber-muted">Docker</p>
+                            </div>
+                        </div>
+
+                        <!-- Soft Skills -->
+                        <h3 class="font-orbitron text-sm text-cyber-cyan tracking-wider mb-6 flex items-center gap-3">
+                            <i class="fas fa-brain"></i>
+                            <span data-th="ทักษะด้านอื่นๆ" data-en="Soft Skills">ทักษะด้านอื่นๆ</span>
+                        </h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 neon-card rounded-full text-sm text-cyber-light" data-th="🤝 การทำงานเป็นทีม" data-en="🤝 Teamwork">🤝 การทำงานเป็นทีม</span>
+                            <span class="px-4 py-2 neon-card rounded-full text-sm text-cyber-light" data-th="💡 ความคิดสร้างสรรค์" data-en="💡 Creativity">💡 ความคิดสร้างสรรค์</span>
+                            <span class="px-4 py-2 neon-card rounded-full text-sm text-cyber-light" data-th="🧩 การแก้ปัญหา" data-en="🧩 Problem Solving">🧩 การแก้ปัญหา</span>
+                            <span class="px-4 py-2 neon-card rounded-full text-sm text-cyber-light" data-th="📚 เรียนรู้ตลอดชีวิต" data-en="📚 Lifelong Learning">📚 เรียนรู้ตลอดชีวิต</span>
+                            <span class="px-4 py-2 neon-card rounded-full text-sm text-cyber-light" data-th="⏰ การจัดการเวลา" data-en="⏰ Time Management">⏰ การจัดการเวลา</span>
+                            <span class="px-4 py-2 neon-card rounded-full text-sm text-cyber-light" data-th="🗣️ การสื่อสาร" data-en="🗣️ Communication">🗣️ การสื่อสาร</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 5: PROJECTS ==================== -->
+        <section id="projects" class="min-h-screen py-24 px-6 md:px-16 lg:px-24">
+            <div class="max-w-5xl mx-auto">
+                <div class="reveal">
+                    <div class="flex items-center gap-4 mb-2">
+                        <span class="font-orbitron text-cyber-cyan text-sm">04.</span>
+                        <h2 class="section-header font-orbitron text-2xl md:text-3xl text-cyber-light"
+                            data-th="ผลงาน" data-en="Projects">ผลงาน</h2>
+                        <span class="flex-1 h-[1px] bg-cyber-border ml-4"></span>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+
+                    <!-- Project 1 -->
+                    <div class="project-card neon-card rounded-lg overflow-hidden reveal">
+                        <div class="h-44 bg-gradient-to-br from-cyber-cyan/10 to-cyber-teal/5 flex items-center justify-center relative">
+                            <i class="fas fa-globe text-5xl text-cyber-cyan/30"></i>
+                            <div class="absolute top-3 right-3 flex gap-2">
+                                <span class="px-2 py-0.5 bg-cyber-cyan/10 border border-cyber-cyan/30 rounded text-[10px] font-orbitron text-cyber-cyan">WEB</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-orbitron text-sm text-cyber-light mb-2"
+                                data-th="เว็บไซต์ Portfolio ส่วนตัว" data-en="Personal Portfolio Website">เว็บไซต์ Portfolio ส่วนตัว</h3>
+                            <p class="text-cyber-muted text-xs leading-relaxed mb-4"
+                               data-th="เว็บไซต์แสดงผลงานส่วนตัวสไตล์ Cyber/Tech สร้างด้วย HTML, Tailwind CSS และ Vanilla JS"
+                               data-en="A personal portfolio website with Cyber/Tech style, built with HTML, Tailwind CSS and Vanilla JS">
+                                เว็บไซต์แสดงผลงานส่วนตัวสไตล์ Cyber/Tech สร้างด้วย HTML, Tailwind CSS และ Vanilla JS
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-[10px] text-cyber-cyan/70 font-mono">HTML</span>
+                                <span class="text-[10px] text-cyber-cyan/70 font-mono">Tailwind</span>
+                                <span class="text-[10px] text-cyber-cyan/70 font-mono">JavaScript</span>
+                            </div>
+                            <div class="flex gap-4">
+                                <a href="#" class="text-cyber-muted hover:text-cyber-cyan transition-colors text-sm">
+                                    <i class="fab fa-github mr-1"></i> Code
+                                </a>
+                                <a href="#" class="text-cyber-muted hover:text-cyber-cyan transition-colors text-sm">
+                                    <i class="fas fa-external-link-alt mr-1"></i> Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card neon-card rounded-lg overflow-hidden reveal">
+                        <div class="h-44 bg-gradient-to-br from-purple-500/10 to-indigo-500/5 flex items-center justify-center relative">
+                            <i class="fas fa-database text-5xl text-purple-400/30"></i>
+                            <div class="absolute top-3 right-3 flex gap-2">
+                                <span class="px-2 py-0.5 bg-purple-500/10 border border-purple-500/30 rounded text-[10px] font-orbitron text-purple-400">APP</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-orbitron text-sm text-cyber-light mb-2"
+                                data-th="ระบบจัดการข้อมูลนักศึกษา" data-en="Student Management System">ระบบจัดการข้อมูลนักศึกษา</h3>
+                            <p class="text-cyber-muted text-xs leading-relaxed mb-4"
+                               data-th="ระบบ CRUD สำหรับจัดการข้อมูลนักศึกษา พร้อมระบบค้นหาและกรองข้อมูล"
+                               data-en="A CRUD system for student data management with search and filter functionality">
+                                ระบบ CRUD สำหรับจัดการข้อมูลนักศึกษา พร้อมระบบค้นหาและกรองข้อมูล
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-[10px] text-purple-400/70 font-mono">PHP</span>
+                                <span class="text-[10px] text-purple-400/70 font-mono">MySQL</span>
+                                <span class="text-[10px] text-purple-400/70 font-mono">Bootstrap</span>
+                            </div>
+                            <div class="flex gap-4">
+                                <a href="#" class="text-cyber-muted hover:text-cyber-cyan transition-colors text-sm">
+                                    <i class="fab fa-github mr-1"></i> Code
+                                </a>
+                                <a href="#" class="text-cyber-muted hover:text-cyber-cyan transition-colors text-sm">
+                                    <i class="fas fa-external-link-alt mr-1"></i> Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card neon-card rounded-lg overflow-hidden reveal">
+                        <div class="h-44 bg-gradient-to-br from-green-500/10 to-emerald-500/5 flex items-center justify-center relative">
+                            <i class="fas fa-robot text-5xl text-green-400/30"></i>
+                            <div class="absolute top-3 right-3 flex gap-2">
+                                <span class="px-2 py-0.5 bg-green-500/10 border border-green-500/30 rounded text-[10px] font-orbitron text-green-400">AI</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-orbitron text-sm text-cyber-light mb-2"
+                                data-th="แชทบอท AI อัจฉริยะ" data-en="AI Chatbot Assistant">แชทบอท AI อัจฉริยะ</h3>
+                            <p class="text-cyber-muted text-xs leading-relaxed mb-4"
+                               data-th="แชทบอทอัจฉริยะที่ใช้ AI ในการตอบคำถามและให้ข้อมูลต่างๆ"
+                               data-en="An intelligent chatbot using AI to answer questions and provide information">
+                                แชทบอทอัจฉริยะที่ใช้ AI ในการตอบคำถามและให้ข้อมูลต่างๆ
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-[10px] text-green-400/70 font-mono">Python</span>
+                                <span class="text-[10px] text-green-400/70 font-mono">API</span>
+                                <span class="text-[10px] text-green-400/70 font-mono">NLP</span>
+                            </div>
+                            <div class="flex gap-4">
+                                <a href="#" class="text-cyber-muted hover:text-cyber-cyan transition-colors text-sm">
+                                    <i class="fab fa-github mr-1"></i> Code
+                                </a>
+                                <a href="#" class="text-cyber-muted hover:text-cyber-cyan transition-colors text-sm">
+                                    <i class="fas fa-external-link-alt mr-1"></i> Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- More projects teaser -->
+                <div class="text-center mt-12 reveal">
+                    <a href="#" class="btn-cyber rounded inline-block">
+                        <span data-th="ดูเพิ่มเติมบน GitHub" data-en="View More on GitHub">ดูเพิ่มเติมบน GitHub</span>
+                        <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 6: CONTACT ==================== -->
+        <section id="contact" class="min-h-screen py-24 px-6 md:px-16 lg:px-24">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="reveal">
+                    <div class="flex items-center justify-center gap-4 mb-2">
+                        <span class="flex-1 h-[1px] bg-cyber-border max-w-[80px]"></span>
+                        <span class="font-orbitron text-cyber-cyan text-sm">05.</span>
+                        <h2 class="section-header font-orbitron text-2xl md:text-3xl text-cyber-light"
+                            data-th="ติดต่อ" data-en="Contact">ติดต่อ</h2>
+                        <span class="flex-1 h-[1px] bg-cyber-border max-w-[80px]"></span>
+                    </div>
+                </div>
+
+                <div class="reveal mt-8">
+                    <p class="text-cyber-muted max-w-lg mx-auto mb-12 leading-relaxed"
+                       data-th="หากท่านสนใจหรือมีคำถามใดๆ สามารถติดต่อผมได้ตามช่องทางด้านล่าง ผมยินดีรับฟังและตอบกลับทุกข้อความครับ"
+                       data-en="If you're interested or have any questions, feel free to reach out through the channels below. I'm happy to listen and respond to every message.">
+                        หากท่านสนใจหรือมีคำถามใดๆ สามารถติดต่อผมได้ตามช่องทางด้านล่าง ผมยินดีรับฟังและตอบกลับทุกข้อความครับ
+                    </p>
+                </div>
+
+                <!-- Contact Cards -->
+                <div class="grid md:grid-cols-3 gap-6 mb-12">
+                    <div class="neon-card rounded-lg p-8 text-center reveal corner-decoration relative">
+                        <div class="w-14 h-14 mx-auto mb-4 border border-cyber-cyan/30 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-envelope text-cyber-cyan text-xl"></i>
+                        </div>
+                        <h3 class="font-orbitron text-xs text-cyber-light tracking-wider mb-2">EMAIL</h3>
+                        <a href="mailto:tanawat.dou@spumail.net" class="text-cyber-muted text-sm hover:text-cyber-cyan transition-colors break-all">
+                            tanawat.dou@spumail.net
+                        </a>
+                    </div>
+
+                    <div class="neon-card rounded-lg p-8 text-center reveal corner-decoration relative">
+                        <div class="w-14 h-14 mx-auto mb-4 border border-cyber-cyan/30 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-phone-alt text-cyber-cyan text-xl"></i>
+                        </div>
+                        <h3 class="font-orbitron text-xs text-cyber-light tracking-wider mb-2" data-th="โทรศัพท์" data-en="PHONE">โทรศัพท์</h3>
+                        <a href="tel:094-791-4598" class="text-cyber-muted text-sm hover:text-cyber-cyan transition-colors">
+                            094-791-4598
+                        </a>
+                    </div>
+
+                    <div class="neon-card rounded-lg p-8 text-center reveal corner-decoration relative">
+                        <div class="w-14 h-14 mx-auto mb-4 border border-cyber-cyan/30 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-map-marker-alt text-cyber-cyan text-xl"></i>
+                        </div>
+                        <h3 class="font-orbitron text-xs text-cyber-light tracking-wider mb-2" data-th="ที่ตั้ง" data-en="LOCATION">ที่ตั้ง</h3>
+                        <p class="text-cyber-muted text-sm" data-th="กรุงเทพมหานคร, ประเทศไทย" data-en="Bangkok, Thailand">กรุงเทพมหานคร, ประเทศไทย</p>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="neon-card rounded-lg p-8 md:p-12 text-left reveal corner-decoration relative">
+                    <h3 class="font-orbitron text-sm text-cyber-cyan tracking-wider mb-8 text-center"
+                        data-th="&gt; ส่งข้อความถึงผม_" data-en="&gt; Send me a message_">&gt; ส่งข้อความถึงผม_</h3>
+
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="text-xs text-cyber-muted font-orbitron tracking-wider mb-2 block" data-th="ชื่อ" data-en="Name">ชื่อ</label>
+                                <input type="text" class="w-full bg-cyber-darker border border-cyber-border rounded px-4 py-3 text-cyber-light text-sm focus:border-cyber-cyan focus:outline-none focus:shadow-[0_0_10px_rgba(0,229,255,0.1)] transition-all" 
+                                       placeholder="" data-placeholder-th="กรุณากรอกชื่อ" data-placeholder-en="Enter your name">
+                            </div>
+                            <div>
+                                <label class="text-xs text-cyber-muted font-orbitron tracking-wider mb-2 block">Email</label>
+                                <input type="email" class="w-full bg-cyber-darker border border-cyber-border rounded px-4 py-3 text-cyber-light text-sm focus:border-cyber-cyan focus:outline-none focus:shadow-[0_0_10px_rgba(0,229,255,0.1)] transition-all" 
+                                       placeholder="" data-placeholder-th="กรุณากรอกอีเมล" data-placeholder-en="Enter your email">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-xs text-cyber-muted font-orbitron tracking-wider mb-2 block" data-th="ข้อความ" data-en="Message">ข้อความ</label>
+                            <textarea rows="5" class="w-full bg-cyber-darker border border-cyber-border rounded px-4 py-3 text-cyber-light text-sm focus:border-cyber-cyan focus:outline-none focus:shadow-[0_0_10px_rgba(0,229,255,0.1)] transition-all resize-none"
+                                      placeholder="" data-placeholder-th="เขียนข้อความของคุณที่นี่..." data-placeholder-en="Write your message here..."></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn-cyber rounded">
+                                <i class="fas fa-paper-plane mr-2"></i>
+                                <span data-th="ส่งข้อความ" data-en="Send Message">ส่งข้อความ</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- CTA -->
+                <div class="mt-12 reveal">
+                    <a href="mailto:tanawat.dou@spumail.net" class="btn-cyber rounded inline-block animate-glow-pulse">
+                        <span data-th="✉️ ส่งอีเมลหาผม" data-en="✉️ Email Me Directly">✉️ ส่งอีเมลหาผม</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== FOOTER ==================== -->
+        <footer class="py-12 px-6 border-t border-cyber-border/30">
+            <div class="max-w-5xl mx-auto text-center">
+                <div class="flex justify-center gap-6 mb-6">
+                    <a href="mailto:tanawat.dou@spumail.net" class="w-10 h-10 border border-cyber-border rounded-lg flex items-center justify-center text-cyber-muted hover:text-cyber-cyan hover:border-cyber-cyan/50 transition-all">
+                        <i class="fas fa-envelope text-sm"></i>
+                    </a>
+                    <a href="tel:094-791-4598" class="w-10 h-10 border border-cyber-border rounded-lg flex items-center justify-center text-cyber-muted hover:text-cyber-cyan hover:border-cyber-cyan/50 transition-all">
+                        <i class="fas fa-phone text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 border border-cyber-border rounded-lg flex items-center justify-center text-cyber-muted hover:text-cyber-cyan hover:border-cyber-cyan/50 transition-all">
+                        <i class="fab fa-github text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 border border-cyber-border rounded-lg flex items-center justify-center text-cyber-muted hover:text-cyber-cyan hover:border-cyber-cyan/50 transition-all">
+                        <i class="fab fa-linkedin-in text-sm"></i>
+                    </a>
+                </div>
+                <p class="text-cyber-muted text-xs font-orbitron tracking-wider">
+                    <span data-th="ออกแบบ &amp; พัฒนาโดย" data-en="Designed &amp; Developed by">ออกแบบ &amp; พัฒนาโดย</span>
+                    <span class="text-cyber-cyan"> Tanawat Doungrai</span>
+                </p>
+                <p class="text-cyber-muted/50 text-xs mt-2">© 2026 All Rights Reserved.</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        // ===== LANGUAGE TOGGLE =====
+        let currentLang = 'th';
+
+        function toggleLang() {
+            currentLang = currentLang === 'th' ? 'en' : 'th';
+            
+            // Update toggle button
+            document.getElementById('lang-th').className = currentLang === 'th' ? 'active-lang' : 'text-cyber-muted';
+            document.getElementById('lang-en').className = currentLang === 'en' ? 'active-lang' : 'text-cyber-muted';
+
+            // Update all text elements with data-th and data-en
+            document.querySelectorAll('[data-th][data-en]').forEach(el => {
+                const text = el.getAttribute(`data-${currentLang}`);
+                if (text !== null) {
+                    el.textContent = text;
+                }
+            });
+
+            // Update placeholders
+            document.querySelectorAll('[data-placeholder-th][data-placeholder-en]').forEach(el => {
+                el.placeholder = el.getAttribute(`data-placeholder-${currentLang}`);
+            });
+
+            // Update html lang
+            document.documentElement.lang = currentLang;
+        }
+
+        // Initialize placeholders
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-placeholder-th]').forEach(el => {
+                el.placeholder = el.getAttribute('data-placeholder-th');
+            });
+        });
+
+        // ===== PARTICLES BACKGROUND =====
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const particleCount = 60;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 229, 255, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function connectParticles() {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a + 1; b < particles.length; b++) {
+                    const dx = particles[a].x - particles[b].x;
+                    const dy = particles[a].y - particles[b].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 150) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(0, 229, 255, ${0.05 * (1 - distance / 150)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            connectParticles();
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // ===== SCROLL SPY / ACTIVE NAV =====
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function updateActiveNav() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - sectionHeight / 3) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-section') === current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', updateActiveNav);
+
+        // ===== SCROLL REVEAL =====
+        function revealOnScroll() {
+            document.querySelectorAll('.reveal').forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // ===== SKILL BAR ANIMATION =====
+        function animateSkillBars() {
+            document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+                const rect = bar.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    bar.style.width = bar.getAttribute('data-width') + '%';
+                }
+            });
+        }
+        window.addEventListener('scroll', animateSkillBars);
+        window.addEventListener('load', animateSkillBars);
+
+        // ===== COUNTER ANIMATION =====
+        function animateCounters() {
+            document.querySelectorAll('[data-count]').forEach(counter => {
+                const rect = counter.getBoundingClientRect();
+                if (rect.top < window.innerHeight && !counter.classList.contains('counted')) {
+                    counter.classList.add('counted');
+                    const target = parseInt(counter.getAttribute('data-count'));
+                    let current = 0;
+                    const increment = target / 60;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            counter.textContent = target + '+';
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = Math.floor(current);
+                        }
+                    }, 30);
+                }
+            });
+        }
+        window.addEventListener('scroll', animateCounters);
+        window.addEventListener('load', animateCounters);
+
+        // ===== SMOOTH SCROLL FOR NAV LINKS =====
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ===== CONTACT FORM (Prevent default) =====
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = currentLang === 'th' 
+                ? '<i class="fas fa-check mr-2"></i>ส่งเรียบร้อย!' 
+                : '<i class="fas fa-check mr-2"></i>Sent Successfully!';
+            btn.style.borderColor = '#00e5ff';
+            btn.style.color = '#00e5ff';
+            btn.style.boxShadow = '0 0 20px rgba(0, 229, 255, 0.3)';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.borderColor = '';
+                btn.style.color = '';
+                btn.style.boxShadow = '';
+                e.target.reset();
+            }, 3000);
+        });
+
+        // ===== SMOOTH ANCHOR LINKS (for buttons) =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.closest('.sidebar-nav')) return; // Already handled
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
